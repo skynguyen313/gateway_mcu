@@ -21,7 +21,6 @@ String JSONHelper::receiveJSON(SoftwareSerial &serial) {
     receivedJSON = serial.readStringUntil('\n'); // Đọc dữ liệu tới khi gặp ký tự xuống dòng
     Serial.println("Received: " + receivedJSON); // Log lại dữ liệu nhận
   }
-
   return receivedJSON; // Trả về chuỗi JSON đã nhận
 }
 

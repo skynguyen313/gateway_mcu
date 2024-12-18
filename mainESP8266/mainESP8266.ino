@@ -7,7 +7,7 @@
 
 // Thông tin kết nối WiFi
 const char* ssid = "Shit";
-const char* password = "123456789@123";
+const char* password = "123456789@1235";
 
 // Địa chỉ Django Server server
 const char* djServer = "http://192.168.108.85:8000";
@@ -39,19 +39,22 @@ void loop() {
     if (value != ""){
       if (name == "rfid1"){
         bool open = gateController.verifyUID1(value);
-        gateController.controlGate1(open);
-        webSocketManager.sendUID(value); // Gửi UID qua WebSocket
+        gateController.controlGate1(open); // In ra màn hình Serial
         String json = JSONHelper::createJSON("gate1", open ? "true" : "false"); //Tạo JSON cho cổng
         JSONHelper::sendJSON(json, mySerial); // Gửi JSON qua Software Serial
 
+        String message = JSONHelper::createJSON("rfid1",value);
+        webSocketManager.send(message); // Gửi UID qua WebSocket
       }
 
-      else if (name == "rfid2"){
+      else if (name == "rfid2"){   
         bool open = gateController.verifyUID2(value);
         gateController.controlGate2(open);
-        webSocketManager.sendUID(value); // Gửi UID qua WebSocket
         String json = JSONHelper::createJSON("gate2", open ? "true" : "false"); //Tạo JSON cho cổng
         JSONHelper::sendJSON(json, mySerial); // Gửi JSON qua Software Serial
+
+        String message = JSONHelper::createJSON("rfid2",value);
+        webSocketManager.send(message); // Gửi UID qua WebSocket
       }
     }
   }

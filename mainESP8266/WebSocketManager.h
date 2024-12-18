@@ -8,7 +8,7 @@ public:
     WebSocketManager(const char* serverAddress); // Constructor
     void begin();                                // Bắt đầu kết nối WebSocket
     void loop();                                 // Lắng nghe và xử lý WebSocket
-    void sendUID(String uid);                    // Gửi UID qua WebSocket
+    void send(String message);                    // Gửi mesgae qua WebSocket
 
 private:
     WebSocketsClient webSocket;

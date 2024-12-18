@@ -37,12 +37,12 @@ void WebSocketManager::loop() {
 }
 
 // Gửi UID qua WebSocket
-void WebSocketManager::sendUID(String uid) {
+void WebSocketManager::send(String message) {
     if (webSocket.isConnected()) {
-        webSocket.sendTXT(uid);
-        Serial.println("Sent UID: " + uid);
+        webSocket.sendTXT(message);
+        Serial.println("Sent message: " + message);
     } else {
-        Serial.println("WebSocket not connected. Unable to send UID.");
+        Serial.println("WebSocket not connected. Unable to send message.");
     }
 }
 
